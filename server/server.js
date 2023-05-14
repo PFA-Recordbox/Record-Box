@@ -10,17 +10,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //remember to add endpoint
-//app.use("/", express.static(path.resolve(__dirname, "")));
+app.use('/index.html', express.static(path.resolve(__dirname, './index.html')));
 
-// statick page
-app.get("/", (req, res) => {
-  return res
-    .status(200)
-    .sendFile(path.resolve(__dirname, "../client/index.html"));
-});
+// entry point for client users
+app.use("/", router);
 
 // signup
-app.get("/signup", router);
 app.post("/signup", router);
 // (req, res) => {
 //   return res
@@ -36,7 +31,7 @@ app.post("/login", router);
 // });
 
 // main page;
-app.get("/homepage", router); //// name of home page
+// app.get("/homepage", router); //// name of home page
 
 //global error handler
 app.use((err, req, res, next) => {
