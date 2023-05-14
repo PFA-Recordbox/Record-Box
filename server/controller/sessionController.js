@@ -11,7 +11,7 @@ sessionController.isLoggedIn = (req, res, next) => {
     } else if (!session) {
       return res.sendStatus(401);
     } else {
-      return next;
+      return next();
     }
   });
 };
