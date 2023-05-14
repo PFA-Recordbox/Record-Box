@@ -17,12 +17,12 @@ module.exports = {
 	devServer: {
 		port: 8080,
 		static: {
-			directory: path.resolve(__dirname, 'dist'),
-			publicPath: '/dist',
+			directory: path.resolve(__dirname, './dist'),
+			publicPath: './dist',
 		},
 		hot: true,
 		proxy: {
-			'*': {
+			'/': {
 				target: 'http://localhost:3000/',
 				secure: false,
 			},
