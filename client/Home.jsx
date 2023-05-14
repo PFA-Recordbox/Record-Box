@@ -1,74 +1,53 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import SearchContainer from './containers/SearchContainer.jsx';
 import RecordContainer from './containers/RecordContainer.jsx';
 import createTestData from './testdata.js';
 
-function HomePage() {
-  const [verified, setVerified] = useState(false);
-
-  const userRecords = createTestData();
-
-  const handleRecordListLoad = () => {
-    if (verified) {
-      const inputForm = document.getElementById('inputForm');
-      if (inputForm) {
-        inputForm.parentNode.removeChild(inputForm);
-      }
-    }
-  }
-
-  const verifyUser = async (e) => {
-    e.preventDefault();
-    // pull user input
-    const name = document.getElementById('username');
-    const pass = document.getElementById('password');
-    // define request body
-    const reqObj = {
-      username: name.value,
-      password: pass.value,
-    }
+function HomePage({ userCreds, validUser }) {
+  /* define unfiltered records from database in state so searchcontainer can access them 
+  We won't modify them in the searchcontainer, just use them as reference*/
+  const [userRecords, setUserRecords] = useState({});
+  /* create filtered records in state so we can render them 
+  in the RecordContainer dynamically */
+  const [filteredRecords, setFilteredRecords] = useState({});
+  
+  const testRecords = createTestData();
+  
+  // retrieve records for current user using userCreds in fetch request
+  // **** ARE WE USING A SESSION COOKIE ONCE THE USER IS VALIDATED AND LOGS IN?? *****
+  const retrieveRecords = async () => {
 
     try {
-      console.log('client fetch trying')
-      const response = await fetch('./login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(reqObj),
-      })
-      if (response.status === 201){
-        const result = await response.json();
-        console.log('fetchResults: ', result);
-        userRecords = result;
-        setVerified(true);
-        handleRecordListLoad();
-        return;
-      }
-      else return `Error in fetch request from client login. Invalid info.`
+      const response = await fetch('/home')
+      const data = await response.json();
+
     } catch (err) {
-      return `Error in fetch request from client login. Error: ${err}`;
+      
     }
-  };
+
+
+  }
+    // if response status is good, setUserRecords and filtered records with data
+
+
+
+
+  
+
+    
 
   return (
-    <>
-    {/* <div id="loginBox">
-      <form id="inputForm">
-        <input id="username" type="text" placeholder="Username"></input>
-        <input id="password" type="password" placeholder="Password"></input>
-        <button onSubmit={(e) => verifyUser(e)}>Login</button>
-      </form>
-    </div> */}
-    <div id="HomePage">
+    <div id="HomePage" onLoad={retrieveRecords}>
       <div id="search-container">
           <SearchContainer />
       </div>
       <div id="record-container">
-          <RecordContainer userRecords={userRecords}/>
+          {/* make sure to pass down proper data */}
+          <RecordContainer userRecords={testRecords}/>
       </div>
+      {validUser ? null : <Redirect to='/login' />}
     </div>
-  </>
   )
 
 };
