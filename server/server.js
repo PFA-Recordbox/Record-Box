@@ -24,7 +24,16 @@ app.post("/signup", router);
 // });
 
 // login
-app.post("/login", router);
+app.post('/login', router);
+
+//logout
+app.post('/logout', router);
+
+//add data
+app.post('/add', router);
+
+//delete data
+app.post('/delete', router);
 
 // app.post('/signup', userController.createUser, (req, res) => {
 //   //return res.redirect('../secret'); // ????

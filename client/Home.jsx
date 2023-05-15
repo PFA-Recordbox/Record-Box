@@ -30,7 +30,6 @@ function HomePage({ userCreds, validUser }) {
   // retrieve records for current user; this fires on page load
   // **** ARE WE USING A SESSION COOKIE ONCE THE USER IS VALIDATED AND LOGS IN?? *****
   const retrieveRecords = async () => {
-    
     try {
       const response = await fetch('/')
       // define response status
@@ -65,20 +64,39 @@ function HomePage({ userCreds, validUser }) {
         <RecordContainer
           filteredRecords={filteredRecords}
           testRecords={testRecords}
+          retrieveRecords={retrieveRecords}
         />
+        <div id='home-modals'>
+          <SettingsModal
+            userCreds={userCreds}
+            showSettingsModal={showSettingsModal}
+            setShowSettingsModal={setShowSettingsModal}
+          />
+          <AddRecordModal
+            showAddModal={showAddModal}
+            setShowAddModal={setShowAddModal}
+            retrieveRecords={retrieveRecords}
+          />
+        </div>
       </div>
       <div id='navbar'>
         <div id="recordbox">Recordbox</div>
         <div id='settings-modal'>
+<<<<<<< HEAD
           <button id='show-settings-button' onClick={()=> setShowSettingsModal(true)}><span class="material-symbols-outlined">more_vert</span></button>
           <SettingsModal userCreds={userCreds} showSettingsModal={showSettingsModal} setShowSettingsModal={setShowSettingsModal}/>
         </div>
         <div id='add-record-modal'>
           <button id='add-record-button' onClick={()=>setShowAddModal(true)}><span class="material-symbols-outlined">add</span></button>
           <AddRecordModal setUserRecords={setUserRecords} showAddModal={showAddModal} setShowAddModal={setShowAddModal} />
+=======
+          <button id='show-settings-button' onClick={() => setShowSettingsModal(true)}>...</button>
+        </div>
+        <div id='add-record-modal'>
+          <button id='add-record-button' onClick={() => setShowAddModal(true)}>+</button>
+>>>>>>> dev
         </div>
       </div>
-
     </div>
   );
 
