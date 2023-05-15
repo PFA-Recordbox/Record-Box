@@ -1,29 +1,29 @@
 let exampleData2 = new Array(10);
 exampleData2.fill({
 	website: 'Instagram',
-	userName: 'Larry',
+	username: 'Larry',
 	password: 'Lobster',
 });
 let exampleData = new Array(10);
 exampleData.fill({
 	website: 'Google',
-	userName: 'Jumpin',
+	username: 'Jumpin',
 	password: 'Jahosef',
 });
 let otherWebsite = new Array(10);
-otherWebsite.fill({ website: 'Amazon', userName: 'Sally', password: 'Styles' });
+otherWebsite.fill({ website: 'Amazon', username: 'Sally', password: 'Styles' });
 
 let anotherWebsite = new Array(10);
 anotherWebsite.fill({
 	website: 'Twitter',
-	userName: 'Sheila',
+	username: 'Sheila',
 	password: 'Shysberg',
 });
 
 let github = new Array(10);
 github.fill({
 	website: 'Github',
-	userName: 'Gary',
+	username: 'Gary',
 	password: 'Gattica',
 });
 

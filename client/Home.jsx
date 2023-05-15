@@ -11,6 +11,7 @@ function HomePage({ userCreds, validUser }) {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [currentRecord, setCurrentRecord] = useState({});
 
   const navigate = useNavigate();
 
@@ -68,6 +69,7 @@ function HomePage({ userCreds, validUser }) {
           testRecords={testRecords}
           retrieveRecords={retrieveRecords}
           setShowInfoModal={setShowInfoModal}
+          setCurrentRecord={setCurrentRecord}
         />
         <div id='home-modals'>
           <SettingsModal
@@ -83,6 +85,7 @@ function HomePage({ userCreds, validUser }) {
           <InfoModal
             showInfoModal={showInfoModal}
             setShowInfoModal={setShowInfoModal}
+            currentRecord={currentRecord}
             retrieveRecords={retrieveRecords}
           />
         </div>
@@ -90,10 +93,10 @@ function HomePage({ userCreds, validUser }) {
       <div id='navbar'>
         <div id="recordbox">Recordbox</div>
         <div id='settings-modal'>
-          <button id='show-settings-button' onClick={() => setShowSettingsModal(true)}><span class="material-symbols-outlined">more_vert</span></button>
+          <button id='show-settings-button' onClick={() => setShowSettingsModal(true)}><span className="material-symbols-outlined">more_vert</span></button>
         </div>
         <div id='add-record-modal'>
-          <button id='add-record-button' onClick={() => setShowAddModal(true)}><span class="material-symbols-outlined">add</span></button>
+          <button id='add-record-button' onClick={() => setShowAddModal(true)}><span className="material-symbols-outlined">add</span></button>
         </div>
       </div>
     </div>

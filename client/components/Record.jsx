@@ -2,42 +2,20 @@ import React, { useState } from "react";
 
 
 
-export default function Record({ website, userName, password, retrieveRecords}){
+export default function Record({ website, username, password, retrieveRecords, setShowInfoModal, setCurrentRecord}){
   const [hidden, setHidden] = useState(true);
 
   const handleToggle = () => {
     setHidden(!hidden);
   }
 
-  const deleteRecord = async (e) => {
-    e.preventDefault();
-    
-    const confirmDelete = confirm('ATTENTION: This action cannot be undone. Do you want to delete this record?');
-    if (confirmDelete) {
-      const reqObj = {
-        website: website,
-        userID: userName,
-        password: password,
-      };
-      try {
-        const response = await fetch('/delete', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type':'application/json'
-          },
-          body: JSON.stringify(reqObj)
-        })
-        const responseStatus = await response.status;
-        if (responseStatus === 201) {
-          retrieveRecords();
-          alert('Record Deleted!')
-        }
-        return;
-      } catch (err) {
-        return `Error when deleting record. Error: ${err}`
-      }
-    }
-    return;
+  const setCurrentRecordAndShowInfoModal = () => {
+    setCurrentRecord({
+      website: website,
+      username: username,
+      password: password,
+    });
+    setShowInfoModal(true);
   }
 
   return (
@@ -49,7 +27,7 @@ export default function Record({ website, userName, password, retrieveRecords}){
         </div>
         <div className="eachRecordHeader">
           <button onClick={handleToggle} id="toggle">Username</button>
-          <input type={hidden ? "password" : "text"} value={userName} id="password"/>
+          <input type={hidden ? "password" : "text"} value={username} id="password"/>
         </div>
         <div className="eachRecordHeader">
           <button onClick={handleToggle} id="toggle">Password</button>
@@ -57,7 +35,7 @@ export default function Record({ website, userName, password, retrieveRecords}){
         </div>
       </div>
       <div>
-        <button id='delete-record' onClick={(e) => deleteRecord(e)}><span class="material-symbols-outlined">info</span></button>
+        <button id='record-info' onClick={() => setCurrentRecordAndShowInfoModal()}>info button</button>
       </div>
     </div>
   )
