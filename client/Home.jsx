@@ -5,10 +5,12 @@ import RecordContainer from './containers/RecordContainer.jsx';
 import createTestData from './testdata.js';
 import AddRecordModal from './components/Modals/AddRecordModal.jsx';
 import SettingsModal from './components/Modals/SettingsModal.jsx';
+import InfoModal from './components/Modals/InfoModal.jsx';
 
 function HomePage({ userCreds, validUser }) {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [showInfoModal, setShowInfoModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -75,6 +77,11 @@ function HomePage({ userCreds, validUser }) {
           <AddRecordModal
             showAddModal={showAddModal}
             setShowAddModal={setShowAddModal}
+            retrieveRecords={retrieveRecords}
+          />
+          <InfoModal
+            showInfoModal={showInfoModal}
+            setShowInfoModal={setShowInfoModal}
             retrieveRecords={retrieveRecords}
           />
         </div>
