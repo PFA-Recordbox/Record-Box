@@ -49,28 +49,34 @@ function Login({ setUserCreds, validUser, setValidUser }) {
   };
 
   return (
-    <div id='loginBox'>
-      <h1>Please Log In to Continue</h1>
-      <form id='inputForm'>
-        <input
-          id='loginName'
-          className='username'
-          type='text'
-          placeholder='Username'
-        ></input>
-        <input
-          id='loginPass'
-          className='password'
-          type='password'
-          placeholder='Password'
-        ></input>
-        <button className='primary-button' onSubmit={sendLoginCredentials}>
-          Login
-        </button>
-        <button className='secondary-button' onClick={() => navigate('signup')}>
-          Sign Up
-        </button>
-      </form>
+    <div class="loginSignup">
+      <div id="loginRecordbox">Recordbox</div>
+      <div id='loginBox'>
+        <form id='inputForm'>
+          <div className='loginInputAreas'>
+            <input
+              id='loginName'
+              className='username'
+              type='text'
+              placeholder='Username'
+            ></input>
+            <input
+              id='loginPass'
+              className='password'
+              type='password'
+              placeholder='Password'
+            ></input>
+          </div>
+          <div className="loginButtonHolder">
+            <button className='primary-button' onSubmit={sendLoginCredentials}>
+              Login
+            </button>
+            <button className='secondary-button' onClick={() => navigate('signup')}>
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

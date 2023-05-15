@@ -325,3 +325,162 @@ h4 {
   color: $mainColor;
 }
 
+
+
+
+
+
+
+
+
+
+.loginSignup {
+  // border: 10px solid orange;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#loginRecordbox {
+  font-size: 6vh;
+  width: 80vw;
+  height: 30vh;
+  // border: 10px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  // text-align: center;
+  color: white;
+}
+
+.loginInputAreas {
+  // border: 10px solid green;
+  width: 80vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#loginName {
+  width: 100%;
+  height: 5vh;
+  font-size: ($fontSize*1.5);
+  border-radius: $borderRadius;
+  text-align: center;
+  color: $mainColor;
+  background-color: $secondaryColor;
+  border: 8px solid $borders;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+}
+
+#loginPass {
+  width: 100%;
+  height: 5vh;
+  font-size: ($fontSize*1.5);
+  border-radius: $borderRadius;
+  text-align: center;
+  color: $mainColor;
+  background-color: $secondaryColor;
+  border: 8px solid $borders;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+}
+
+.loginInputAreas ::placeholder {
+  color: $mainColor;
+}
+
+.loginButtonHolder {
+  // border: 10px solid red;
+  height: 6vh;
+  width: 80vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.loginButtonHolder .primary-button{
+  // border: 10px solid red;
+  width: 40%;
+  background-color: $secondaryColor;
+  border: 8px solid $borders;
+}
+
+.loginButtonHolder .secondary-button{
+  // border: 10px solid red;
+  width: 40%;
+  background-color: $secondaryColor;
+  border: 8px solid $borders;
+}
+
+
+
+
+
+
+
+
+
+#signupBox {
+  // border: 10px solid rgb(255, 0, 0);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#signupName {
+  width: 100%;
+  height: 5vh;
+  font-size: ($fontSize*1.5);
+  border-radius: $borderRadius;
+  text-align: center;
+  color: $mainColor;
+  background-color: $secondaryColor;
+  border: 8px solid $borders;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+}
+
+#signupPass {
+  width: 100%;
+  height: 5vh;
+  font-size: ($fontSize*1.5);
+  border-radius: $borderRadius;
+  text-align: center;
+  color: $mainColor;
+  background-color: $secondaryColor;
+  border: 8px solid $borders;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+}
+
+
+
+.signupButtonHolder {
+  // border: 10px solid red;
+  height: 6vh;
+  width: 80vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.signupButtonHolder .primary-button{
+  // border: 10px solid red;
+  width: 40%;
+  background-color: $secondaryColor;
+  border: 8px solid $borders;
+}
+
+.signupButtonHolder .secondary-button{
+  // border: 10px solid red;
+  width: 40%;
+  background-color: $secondaryColor;
+  border: 8px solid $borders;
+}
