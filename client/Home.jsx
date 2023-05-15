@@ -3,8 +3,13 @@ import { redirect, useNavigate } from 'react-router-dom';
 import SearchContainer from './containers/SearchContainer.jsx';
 import RecordContainer from './containers/RecordContainer.jsx';
 import createTestData from './testdata.js';
+import AddRecordModal from './components/Modals/AddRecordModal.jsx';
+import SettingsModal from './components/Modals/SettingsModal.jsx';
 
 function HomePage({ userCreds, validUser }) {
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
+
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -62,6 +67,17 @@ function HomePage({ userCreds, validUser }) {
           testRecords={testRecords}
         />
       </div>
+      <div id='navbar'>
+        <div id='settings-modal'>
+          <button id='show-settings-button' onClick={()=> setShowSettingsModal(true)}>...</button>
+          <SettingsModal userCreds={userCreds} showSettingsModal={showSettingsModal} setShowSettingsModal={setShowSettingsModal}/>
+        </div>
+        <div id='add-record-modal'>
+          <button id='add-record-button' onClick={()=>setShowAddModal(true)}>+</button>
+          <AddRecordModal setUserRecords={setUserRecords} showAddModal={showAddModal} setShowAddModal={setShowAddModal} />
+        </div>
+      </div>
+
     </div>
   );
 
