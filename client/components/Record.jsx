@@ -16,12 +16,12 @@ export default function Record({ website, userName, password, retrieveRecords}){
     if (confirmDelete) {
       const reqObj = {
         website: website,
-        username: userName,
+        userID: userName,
         password: password,
       };
       try {
         const response = await fetch('/delete', {
-          method: 'POST',
+          method: 'DELETE',
           headers: {
             'Content-Type':'application/json'
           },
