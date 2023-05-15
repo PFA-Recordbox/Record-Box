@@ -15,7 +15,7 @@ try {
     const user = await User.findOne({ _id: userId });
     // Send the fetched user data as JSON response 
     const userData = user.data
-    res.send(userData); 
+    res.status(200).send(userData);
   } catch (error) {
     console.error('error with checking session for user:', error);
     res.sendStatus(500)

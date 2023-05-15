@@ -1,75 +1,70 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { redirect, useNavigate } from 'react-router-dom';
 import SearchContainer from './containers/SearchContainer.jsx';
 import RecordContainer from './containers/RecordContainer.jsx';
 import createTestData from './testdata.js';
 
-function HomePage() {
-  const [verified, setVerified] = useState(false);
+function HomePage({ userCreds, validUser }) {
+  const navigate = useNavigate();
 
-  const userRecords = createTestData();
-
-  const handleRecordListLoad = () => {
-    if (verified) {
-      const inputForm = document.getElementById('inputForm');
-      if (inputForm) {
-        inputForm.parentNode.removeChild(inputForm);
+  useEffect(() => {
+    if (!validUser) {
+      navigate('login');
+    }
+  }, [navigate, validUser]);
+  
+  /* define unfiltered records from database in state so searchcontainer can access them 
+  We won't modify them in the searchcontainer, just use them as reference*/
+  const [userRecords, setUserRecords] = useState([]);
+  /* create filtered records in state so we can render them 
+  in the RecordContainer dynamically */
+  const [filteredRecords, setFilteredRecords] = useState([]);
+  
+  const testRecords = createTestData();
+  
+  // retrieve records for current user; this fires on page load
+  // **** ARE WE USING A SESSION COOKIE ONCE THE USER IS VALIDATED AND LOGS IN?? *****
+  const retrieveRecords = async () => {
+    
+    try {
+      const response = await fetch('/')
+      // define response status
+      const responseStatus = await response.status;
+      // take user datastream and turn into usable js code
+      const records = await response.json();
+      // ***** CHECK IF SERVER IS SENDING BACK PROPER STATUS CODE *****
+      if (responseStatus === 200) {
+        // if response status is good, setUserRecords and setFilteredRecords with data
+        setUserRecords(records.data);
+        setFilteredRecords(records.data);
       }
+      return;
+    } catch (err) {
+      return `Error with retrieving user records in Home Page. Error: ${err}.`
     }
   }
 
-  const verifyUser = async (e) => {
-    e.preventDefault();
-    // pull user input
-    const name = document.getElementById('username');
-    const pass = document.getElementById('password');
-    // define request body
-    const reqObj = {
-      username: name.value,
-      password: pass.value,
-    }
-
-    try {
-      console.log('client fetch trying')
-      const response = await fetch('./login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(reqObj),
-      })
-      if (response.status === 201){
-        const result = await response.json();
-        console.log('fetchResults: ', result);
-        userRecords = result;
-        setVerified(true);
-        handleRecordListLoad();
-        return;
-      }
-      else return `Error in fetch request from client login. Invalid info.`
-    } catch (err) {
-      return `Error in fetch request from client login. Error: ${err}`;
-    }
-  };
-
   return (
-    <>
-    {/* <div id="loginBox">
-      <form id="inputForm">
-        <input id="username" type="text" placeholder="Username"></input>
-        <input id="password" type="password" placeholder="Password"></input>
-        <button onSubmit={(e) => verifyUser(e)}>Login</button>
-      </form>
-    </div> */}
-    <div id="HomePage">
-      <div id="search-container">
-          <SearchContainer />
+    <div id='HomePage' onLoad={retrieveRecords}>
+      <h1>Welcome to your Home Page</h1>
+      <div id='search-container'>
+        {/* pass down the full list of original records and setUserRecords since we want a re-render to show the added entries;
+        Also the ability to setFilteredRecords so the records will re-render on the state change based on the filter */}
+        <SearchContainer
+          userRecords={userRecords}
+          setUserRecords={setUserRecords}
+          setFilteredRecords={setFilteredRecords}
+        />
       </div>
-      <div id="record-container">
-          <RecordContainer userRecords={userRecords}/>
+      <div id='record-container'>
+        {/* pass down the list of filtered records; searchbar will handle filtering and resetting to full record list if search is empty */}
+        <RecordContainer
+          filteredRecords={filteredRecords}
+          testRecords={testRecords}
+        />
       </div>
     </div>
-  </>
-  )
+  );
 
 };
 
