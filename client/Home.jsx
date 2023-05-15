@@ -12,11 +12,11 @@ function HomePage({ userCreds, validUser }) {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!validUser) {
-  //     navigate('login');
-  //   }
-  // }, [navigate, validUser]);
+  useEffect(() => {
+    if (!validUser) {
+      navigate('login');
+    }
+  }, [navigate, validUser]);
   
   /* define unfiltered records from database in state so searchcontainer can access them 
   We won't modify them in the searchcontainer, just use them as reference*/

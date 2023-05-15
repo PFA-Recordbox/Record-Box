@@ -49,29 +49,33 @@ function Signup({ setUserCreds, setValidUser, validUser }) {
 
   return (
     <div id='signupBox'>
-      <h1>Please Create An Account</h1>
-      <form id='signupForm'>
-        <input
-          id='signupName'
-          className='username'
-          type='text'
-          placeholder='Username'
-        ></input>
-        <input
-          id='signupPass'
-          className='password'
-          type='password'
-          placeholder='Password'
-        ></input>
-        <button className='primary-button' onSubmit={createUser}>
-          Create Account
-        </button>
-        <button
-          className='secondary-button'
-          onClick={() => navigate('../login')}
-        >
-          Cancel
-        </button>
+      <div id="loginRecordbox">Recordbox</div>
+        <form id='signupForm'>
+        <div className='loginInputAreas'>
+          <input
+            id='signupName'
+            className='username'
+            type='text'
+            placeholder='Create Username'
+          ></input>
+          <input
+            id='signupPass'
+            className='password'
+            type='password'
+            placeholder='Create Password'
+          ></input>
+        </div>
+        <div className='signupButtonHolder'>
+          <button className='primary-button' onSubmit={createUser}>
+            Create Account
+          </button>
+          <button
+            className='secondary-button'
+            onClick={() => navigate('../login')}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
