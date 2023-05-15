@@ -16,8 +16,8 @@ function Login({ setUserCreds, validUser, setValidUser }) {
     const password = document.getElementById('loginPass');
     // stores user input into object for req body
     const userInput = {
-      username: username.value,
-      password: password.value,
+      userId: username.value,
+      userPassword: password.value,
     };
     // post request to server
     try {
