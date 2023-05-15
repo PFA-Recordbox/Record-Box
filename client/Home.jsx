@@ -7,18 +7,18 @@ import createTestData from './testdata.js';
 function HomePage({ userCreds, validUser }) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!validUser) {
-      navigate('login');
-    }
-  }, [navigate, validUser]);
+  // useEffect(() => {
+  //   if (!validUser) {
+  //     navigate('login');
+  //   }
+  // }, [navigate, validUser]);
   
   /* define unfiltered records from database in state so searchcontainer can access them 
   We won't modify them in the searchcontainer, just use them as reference*/
-  const [userRecords, setUserRecords] = useState([]);
+  const [userRecords, setUserRecords] = useState(createTestData());
   /* create filtered records in state so we can render them 
   in the RecordContainer dynamically */
-  const [filteredRecords, setFilteredRecords] = useState([]);
+  const [filteredRecords, setFilteredRecords] = useState(createTestData());
   
   const testRecords = createTestData();
   
@@ -46,7 +46,7 @@ function HomePage({ userCreds, validUser }) {
 
   return (
     <div id='HomePage' onLoad={retrieveRecords}>
-      <h1>Welcome to your Home Page</h1>
+      <h1>Welcome to Your Recordbox</h1>
       <div id='search-container'>
         {/* pass down the full list of original records and setUserRecords since we want a re-render to show the added entries;
         Also the ability to setFilteredRecords so the records will re-render on the state change based on the filter */}

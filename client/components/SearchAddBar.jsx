@@ -9,19 +9,22 @@ export default function SearchAddBar({ userRecords, setUserRecords, setFilteredR
   const filterRecords = () => {
     const searchInput = document.getElementById('searchbar');
     const text = searchInput.value;
+
     // initalize an array to hold filtered material
+    const searchFilterResults = [];
 
-    // loop through userRecords object? array?
-    // for (const prop in userRecords) {
-    //   // identify if the search text matches the 
-    // }
+    // iterate through userRecords
+    userRecords.forEach(element => {
+      // if website string lowercased includes with text lowercase
+      if (element.website.toLowerCase().startsWith(text.toLowerCase())){
+        // push element to searchFilterREsults
+        searchFilterResults.push(element)
+      }
 
-    // 
+    });
 
-
-
-
-
+    // call setFilteredRecords and pass in searchFilterResults
+    setFilteredRecords(searchFilterResults);
   };
 
   
@@ -32,11 +35,10 @@ export default function SearchAddBar({ userRecords, setUserRecords, setFilteredR
 
   return (
     <div id="searchaddbar">
-    <form id="search-input">
+      <form id="search-input">
         <input id="searchbar" type="text" placeholder="Search..." onChange={filterRecords}></input>
-      <button id="newrecord">Create Record</button>
-    </form>
-      
+      </form>
+      <button id="newrecord">Create Record</button>    
     </div>
   )
 }

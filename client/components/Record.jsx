@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+
+
 
 export default function Record({ website, userName, password}){
+  const [hidden, setHidden] = useState(true);
+
+  const handleToggle = () => {
+    setHidden(!hidden);
+  }
   return (
     <div className="eachRecord">
       <div className="eachRecordHeader">
@@ -8,12 +15,12 @@ export default function Record({ website, userName, password}){
         <span>{website}</span>
       </div>
       <div className="eachRecordHeader">
-        <p>Username:</p>
-        <span>{userName}</span>
+        <button onClick={handleToggle} id="toggle">Username:</button>
+        <input type={hidden ? "password" : "text"} value={userName} id="password"/>
       </div>
       <div className="eachRecordHeader">
-        <p>Password:</p>
-        <span>{password}</span>
+        <button onClick={handleToggle} id="toggle">Password:</button>
+        <input type={hidden ? "password" : "text"} value={password} id="password"/>
       </div>
     </div>
   )
