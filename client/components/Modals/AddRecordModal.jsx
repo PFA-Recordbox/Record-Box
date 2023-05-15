@@ -52,7 +52,7 @@ function AddRecordModal({ showAddModal, setShowAddModal, retrieveRecords }) {
           </form>
         </div>
         <div className='modal-footer'>
-          <button className='primary-button' onClick={(e)=> addRecord(e)}>Add Record</button>
+          <button className='primary-button' onClick={(e)=> addRecord(e)}>Submit</button>
           <button className='secondary-button' onClick={()=> setShowAddModal(false)}>Cancel</button>
         </div>
       </div>

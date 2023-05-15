@@ -65,6 +65,7 @@ function HomePage({ userCreds, validUser }) {
         <RecordContainer
           filteredRecords={filteredRecords}
           testRecords={testRecords}
+          retrieveRecords={retrieveRecords}
         />
       </div>
       <div id='navbar'>
