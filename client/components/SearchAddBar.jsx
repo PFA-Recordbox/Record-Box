@@ -38,7 +38,6 @@ export default function SearchAddBar({ userRecords, setUserRecords, setFilteredR
       <form id="search-input">
         <input id="searchbar" type="text" placeholder="Search..." onChange={filterRecords}></input>
       </form>
-      <button id="newrecord" >Create Record</button>    
     </div>
   )
 }

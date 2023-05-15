@@ -42,9 +42,9 @@ export default function Record({ website, userName, password, retrieveRecords}){
 
   return (
     <div className="eachRecord">
-      <div className="eachRecordHeader">
-        <p>Website:</p>
-        <span>{website}</span>
+      <div id="website" className="eachRecordHeader">
+        <div>Website:</div>
+        <div>{website}</div>
       </div>
       <div className="eachRecordHeader">
         <button onClick={handleToggle} id="toggle">Username:</button>

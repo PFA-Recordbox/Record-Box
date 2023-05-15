@@ -50,7 +50,6 @@ function HomePage({ userCreds, validUser }) {
 
   return (
     <div id='HomePage' onLoad={retrieveRecords}>
-      <h1>Welcome to Your Recordbox</h1>
       <div id='search-container'>
         {/* pass down the full list of original records and setUserRecords since we want a re-render to show the added entries;
         Also the ability to setFilteredRecords so the records will re-render on the state change based on the filter */}
@@ -81,11 +80,12 @@ function HomePage({ userCreds, validUser }) {
         </div>
       </div>
       <div id='navbar'>
+        <div id="recordbox">Recordbox</div>
         <div id='settings-modal'>
-          <button id='show-settings-button' onClick={() => setShowSettingsModal(true)}>...</button>
+          <button id='show-settings-button' onClick={() => setShowSettingsModal(true)}><span class="material-symbols-outlined">more_vert</span></button>
         </div>
         <div id='add-record-modal'>
-          <button id='add-record-button' onClick={() => setShowAddModal(true)}>+</button>
+          <button id='add-record-button' onClick={() => setShowAddModal(true)}><span class="material-symbols-outlined">add</span></button>
         </div>
       </div>
     </div>
