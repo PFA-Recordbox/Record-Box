@@ -24,7 +24,7 @@ userController.createUser = (req, res, next) => {
   });
 };
 
-userController.veryfyUser = (req, res, next) => {
+userController.verifyUser = (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password)
     return next({

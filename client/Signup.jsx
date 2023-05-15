@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 
-function Signup({ setUserCreds, setValidUser }) {
+function Signup({ setUserCreds, setValidUser, validUser }) {
 
   const createUser = async () => {
     const username = document.getElementById('signupName');
@@ -25,31 +25,44 @@ function Signup({ setUserCreds, setValidUser }) {
       const responseStatus = await response.status;
       // if response is good...
       if (responseStatus === 201) {
-        // update state's userCreds to the values submitted
-        setUserCreds(userInput);
         // update validUser to true
+        // update state's userCreds to the values submitted
         setValidUser(true);
-        // redirect to login
-        return <Redirect to='/login' />;
-      } else {
-        return;
+        setUserCreds(userInput);
       }
+      return;
     } catch (err) {
       // alert message pops up in browser **CHANGE LATER**
-      return alert('Failed to create profile. Please try again.');
+      return alert(`Failed to create profile. Please try again. Error: ${err}`);
     };
   }
 
   return (
     <div id='signupBox'>
+      {/* once validUser evaluates to true from a successful server response, the user will be redirected to the home page */}
+      {validUser && <Redirect to='/' />}
+      <h1>Please Create An Account</h1>
       <form id='signupForm'>
-        <input id='signupName' className='username' type='text' placeholder='Username'></input>
-        <input id='signupPass' className='password' type='password' placeholder='Password'></input>
-        <button className='primary-button' onSubmit={createUser}>Create Account</button>
-        <Link className='secondary-button' to='/login'>Cancel</Link>
+        <input
+          id='signupName'
+          className='username'
+          type='text'
+          placeholder='Username'
+        ></input>
+        <input
+          id='signupPass'
+          className='password'
+          type='password'
+          placeholder='Password'
+        ></input>
+        <button className='primary-button' onSubmit={createUser}>
+          Create Account
+        </button>
+        <Link className='secondary-button' to='login'>
+          Cancel
+        </Link>
       </form>
     </div>
-    
   );
 }
 

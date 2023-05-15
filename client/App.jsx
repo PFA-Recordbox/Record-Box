@@ -11,9 +11,30 @@ function App() {
   return (
     <div id='App'>
       <Routes>
-        <Route path='/' element={<Home validUser={validUser} userCreds={userCreds} />} />
-        <Route path='login' element={<Login setValidUser={setValidUser} setUserCreds={setUserCreds} />} />
-        <Route path='signup' element={<Signup setValidUser={setValidUser} setUserCreds={setUserCreds} />} />
+        <Route
+          path='/'
+          element={<Home validUser={validUser} userCreds={userCreds} />}
+        />
+        <Route
+          path='login'
+          element={
+            <Login
+              setValidUser={setValidUser}
+              validUser={validUser}
+              setUserCreds={setUserCreds}
+            />
+          }
+        />
+        <Route
+          path='signup'
+          element={
+            <Signup
+              setValidUser={setValidUser}
+              validUser={validUser}
+              setUserCreds={setUserCreds}
+            />
+          }
+        />
       </Routes>
     </div>
   );

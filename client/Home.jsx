@@ -14,41 +14,50 @@ function HomePage({ userCreds, validUser }) {
   
   const testRecords = createTestData();
   
-  // retrieve records for current user using userCreds in fetch request
+  // retrieve records for current user; this fires on page load
   // **** ARE WE USING A SESSION COOKIE ONCE THE USER IS VALIDATED AND LOGS IN?? *****
   const retrieveRecords = async () => {
-
     try {
       const response = await fetch('/home')
-      const data = await response.json();
-
+      // define response status
+      const responseStatus = await response.status;
+      // take user datastream and turn into usable js code
+      const records = await response.json();
+      // ***** CHECK IF SERVER IS SENDING BACK PROPER STATUS CODE *****
+      if (responseStatus === 200) {
+        // if response status is good, setUserRecords and setFilteredRecords with data
+        setUserRecords(records);
+        setFilteredRecords(records);
+      }
+      return;
     } catch (err) {
-      
+      return `Error with retrieving user records in Home Page. Error: ${err}.`
     }
-
-
   }
-    // if response status is good, setUserRecords and filtered records with data
-
-
-
-
-  
-
-    
 
   return (
-    <div id="HomePage" onLoad={retrieveRecords}>
-      <div id="search-container">
-          <SearchContainer />
+    <div id='HomePage'>
+      {/* if the validUser state is false, this will redirect to the login page */}
+      {validUser ? null : <Redirect to='login' />}
+      <h1>Welcome to your Home Page</h1>
+      <div id='search-container'>
+        {/* pass down the full list of original records and setUserRecords since we want a re-render to show the added entries;
+        Also the ability to setFilteredRecords so the records will re-render on the state change based on the filter */}
+        <SearchContainer
+          userRecords={userRecords}
+          setUserRecords={setUserRecords}
+          setFilteredRecords={setFilteredRecords}
+        />
       </div>
-      <div id="record-container">
-          {/* make sure to pass down proper data */}
-          <RecordContainer userRecords={testRecords}/>
+      <div id='record-container' onLoad={retrieveRecords}>
+        {/* pass down the list of filtered records; searchbar will handle filtering and resetting to full record list if search is empty */}
+        <RecordContainer
+          filteredRecords={filteredRecords}
+          testRecords={testRecords}
+        />
       </div>
-      {validUser ? null : <Redirect to='/login' />}
     </div>
-  )
+  );
 
 };
 

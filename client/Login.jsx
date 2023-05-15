@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 
 
-function Login({setUserCreds, setValidUser}) {
+function Login({setUserCreds, validUser, setValidUser}) {
 
   // function sends a request to server to validate user's credentials
   const sendLoginCredentials = async () => {
@@ -28,14 +28,13 @@ function Login({setUserCreds, setValidUser}) {
       const responseStatus = await response.status;
       // if response status is good...
       if (responseStatus === 201) {
-        // update state with userInput
-        setUserCreds(userInput);
         // update state with validUser being true
+        // update state with userInput
         setValidUser(true);
+        setUserCreds(userInput);
         // redirect user to home page
-        return (
-          <Redirect to='/home' />
-        )
+        return;
+
       } else {
         // alert message pops up in browser **CHANGE LATER**
         return alert('Invalid username/password');
@@ -49,11 +48,28 @@ function Login({setUserCreds, setValidUser}) {
 
   return (
     <div id='loginBox'>
+      {/* once validUser evaluates to true from a successful server response, the user will be redirected to the home page */}
+      {validUser && <Redirect to='/' />}
+      <h1>Please Log In to Continue</h1>
       <form id='inputForm'>
-        <input id='loginName' className='username' type='text' placeholder='Username'></input>
-        <input id='loginPass' className='password' type='password' placeholder='Password'></input>
-        <button className='primary-button' onSubmit={sendLoginCredentials}>Login</button>
-        <Link className='secondary-button' to='/signup'>Sign Up</Link>
+        <input
+          id='loginName'
+          className='username'
+          type='text'
+          placeholder='Username'
+        ></input>
+        <input
+          id='loginPass'
+          className='password'
+          type='password'
+          placeholder='Password'
+        ></input>
+        <button className='primary-button' onSubmit={sendLoginCredentials}>
+          Login
+        </button>
+        <Link className='secondary-button' to='signup'>
+          Sign Up
+        </Link>
       </form>
     </div>
   );
