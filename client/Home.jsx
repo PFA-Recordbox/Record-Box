@@ -1,24 +1,33 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { redirect, useNavigate } from 'react-router-dom';
 import SearchContainer from './containers/SearchContainer.jsx';
 import RecordContainer from './containers/RecordContainer.jsx';
 import createTestData from './testdata.js';
 
 function HomePage({ userCreds, validUser }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!validUser) {
+      navigate('login');
+    }
+  }, [navigate, validUser]);
+  
   /* define unfiltered records from database in state so searchcontainer can access them 
   We won't modify them in the searchcontainer, just use them as reference*/
-  const [userRecords, setUserRecords] = useState({});
+  const [userRecords, setUserRecords] = useState([]);
   /* create filtered records in state so we can render them 
   in the RecordContainer dynamically */
-  const [filteredRecords, setFilteredRecords] = useState({});
+  const [filteredRecords, setFilteredRecords] = useState([]);
   
   const testRecords = createTestData();
   
   // retrieve records for current user; this fires on page load
   // **** ARE WE USING A SESSION COOKIE ONCE THE USER IS VALIDATED AND LOGS IN?? *****
   const retrieveRecords = async () => {
+    
     try {
-      const response = await fetch('/home')
+      const response = await fetch('/')
       // define response status
       const responseStatus = await response.status;
       // take user datastream and turn into usable js code
@@ -26,8 +35,8 @@ function HomePage({ userCreds, validUser }) {
       // ***** CHECK IF SERVER IS SENDING BACK PROPER STATUS CODE *****
       if (responseStatus === 200) {
         // if response status is good, setUserRecords and setFilteredRecords with data
-        setUserRecords(records);
-        setFilteredRecords(records);
+        setUserRecords(records.data);
+        setFilteredRecords(records.data);
       }
       return;
     } catch (err) {
@@ -36,9 +45,7 @@ function HomePage({ userCreds, validUser }) {
   }
 
   return (
-    <div id='HomePage'>
-      {/* if the validUser state is false, this will redirect to the login page */}
-      {validUser ? null : <Redirect to='login' />}
+    <div id='HomePage' onLoad={retrieveRecords}>
       <h1>Welcome to your Home Page</h1>
       <div id='search-container'>
         {/* pass down the full list of original records and setUserRecords since we want a re-render to show the added entries;
@@ -49,7 +56,7 @@ function HomePage({ userCreds, validUser }) {
           setFilteredRecords={setFilteredRecords}
         />
       </div>
-      <div id='record-container' onLoad={retrieveRecords}>
+      <div id='record-container'>
         {/* pass down the list of filtered records; searchbar will handle filtering and resetting to full record list if search is empty */}
         <RecordContainer
           filteredRecords={filteredRecords}

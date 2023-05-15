@@ -12,9 +12,9 @@ export default function SearchAddBar({ userRecords, setUserRecords, setFilteredR
     // initalize an array to hold filtered material
 
     // loop through userRecords object? array?
-    for (const prop in userRecords) {
-      // identify if the search text matches the 
-    }
+    // for (const prop in userRecords) {
+    //   // identify if the search text matches the 
+    // }
 
     // 
 
@@ -26,15 +26,15 @@ export default function SearchAddBar({ userRecords, setUserRecords, setFilteredR
 
   
   // the create button record could redirect with <Link /> or if we get modals working to pop one up...
-    // the add record's "submit" button will need to send a patch/put request to add info to the database
-    // that same submit will also need to setUserRecords so we change state and fire a re-render with the new record included in the list
+    // the add record's "submit" button will need to send a post request to add info to the database '/add' ??
+    // on response status 200, submit will setUserRecords with the response body of the database's response body
 
 
   return (
     <div id="searchaddbar">
     <form id="search-input">
-        <input id="searchbar" inputType="text" placeholder="Search..." onChange={filterRecords}></input>
-      {/* <button id="newrecord">Create Record</button> */}
+        <input id="searchbar" type="text" placeholder="Search..." onChange={filterRecords}></input>
+      <button id="newrecord">Create Record</button>
     </form>
       
     </div>

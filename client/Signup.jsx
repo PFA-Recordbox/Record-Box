@@ -1,7 +1,16 @@
-import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Signup({ setUserCreds, setValidUser, validUser }) {
+  // const [sendToLogin, setSendToLogin] = useState(false);
+
+  // logic handling redirects if user is
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (sendToLogin) {
+  //     navigate('login');
+  //   }
+  // }, [navigate, sendToLogin]);
 
   const createUser = async () => {
     const username = document.getElementById('signupName');
@@ -29,18 +38,17 @@ function Signup({ setUserCreds, setValidUser, validUser }) {
         // update state's userCreds to the values submitted
         setValidUser(true);
         setUserCreds(userInput);
+        sendToLogin = true;
       }
       return;
     } catch (err) {
       // alert message pops up in browser **CHANGE LATER**
       return alert(`Failed to create profile. Please try again. Error: ${err}`);
-    };
-  }
+    }
+  };
 
   return (
     <div id='signupBox'>
-      {/* once validUser evaluates to true from a successful server response, the user will be redirected to the home page */}
-      {validUser && <Redirect to='/' />}
       <h1>Please Create An Account</h1>
       <form id='signupForm'>
         <input
@@ -58,9 +66,12 @@ function Signup({ setUserCreds, setValidUser, validUser }) {
         <button className='primary-button' onSubmit={createUser}>
           Create Account
         </button>
-        <Link className='secondary-button' to='login'>
+        <button
+          className='secondary-button'
+          onClick={() => navigate('../login')}
+        >
           Cancel
-        </Link>
+        </button>
       </form>
     </div>
   );

@@ -16,7 +16,7 @@ function App() {
           element={<Home validUser={validUser} userCreds={userCreds} />}
         />
         <Route
-          path='login'
+          path='/login'
           element={
             <Login
               setValidUser={setValidUser}
@@ -26,7 +26,7 @@ function App() {
           }
         />
         <Route
-          path='signup'
+          path='/signup'
           element={
             <Signup
               setValidUser={setValidUser}

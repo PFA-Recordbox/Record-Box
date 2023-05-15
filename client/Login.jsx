@@ -1,8 +1,15 @@
-import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 
-function Login({setUserCreds, validUser, setValidUser}) {
+function Login({ setUserCreds, validUser, setValidUser }) {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (validUser) {
+      navigate('../');
+    }
+  }, [navigate, validUser]);
 
   // function sends a request to server to validate user's credentials
   const sendLoginCredentials = async () => {
@@ -48,8 +55,6 @@ function Login({setUserCreds, validUser, setValidUser}) {
 
   return (
     <div id='loginBox'>
-      {/* once validUser evaluates to true from a successful server response, the user will be redirected to the home page */}
-      {validUser && <Redirect to='/' />}
       <h1>Please Log In to Continue</h1>
       <form id='inputForm'>
         <input
@@ -67,9 +72,7 @@ function Login({setUserCreds, validUser, setValidUser}) {
         <button className='primary-button' onSubmit={sendLoginCredentials}>
           Login
         </button>
-        <Link className='secondary-button' to='signup'>
-          Sign Up
-        </Link>
+        <button className="secondary-button" onClick={() => navigate('signup')}> Sign Up</button>
       </form>
     </div>
   );
