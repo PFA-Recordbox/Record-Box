@@ -1,7 +1,7 @@
 import React from 'react';
 import Record from '../components/Record.jsx';
 
-export default function RecordContainer({ filteredRecords, testRecords }) {
+export default function RecordContainer({ filteredRecords, testRecords, retrieveRecords }) {
   // initialize an array for rendering
   const recordArray = [];
   console.log('test');
@@ -13,7 +13,12 @@ export default function RecordContainer({ filteredRecords, testRecords }) {
     console.log(website, userName, password);
     // push Record to recordArray
     recordArray.push(
-      <Record website={website} userName={userName} password={password} />
+      <Record
+        website={website}
+        userName={userName}
+        password={password}
+        retrieveRecords={retrieveRecords}
+      />
     );
   }
 

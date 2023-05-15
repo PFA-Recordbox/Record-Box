@@ -1,18 +1,41 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
-function AddRecordModal({ setUserRecords, showAddModal, setShowAddModal }) {
+function AddRecordModal({ showAddModal, setShowAddModal, retrieveRecords }) {
 
   if (!showAddModal) {
     return (null);
   }
 
-  const addRecord = (e) => {
+  const addRecord = async (e) => {
     e.preventDefault();
     // gathers input data
-    const web = document.getElementById()
-
-
+    const web = document.getElementById('add-website');
+    const user = document.getElementById('add-username');
+    const pass = document.getElementById('add-password');
+    const reqObj = {
+      website: web.value,
+      username: user.value,
+      password: pass.value,
+    };
+    try {
+      const response = await fetch('/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify(reqObj)
+      })
+      const responseStatus = await response.status;
+      if (responseStatus === 201) {
+        retrieveRecords();
+        alert('Record Added Successfully!');
+      }
+      return;
+    } catch (err) {
+      return `Error encountered when trying to add record. Error: ${err}`;
+    }
+    
   }
 
   return (
@@ -29,7 +52,7 @@ function AddRecordModal({ setUserRecords, showAddModal, setShowAddModal }) {
           </form>
         </div>
         <div className='modal-footer'>
-          <button className='primary-button' onClick={(e)=> addRecord(e)}>Add Record</button>
+          <button className='primary-button' onClick={(e)=> addRecord(e)}>Submit</button>
           <button className='secondary-button' onClick={()=> setShowAddModal(false)}>Cancel</button>
         </div>
       </div>
