@@ -1,7 +1,7 @@
 import React from 'react';
 import Record from '../components/Record.jsx';
 
-export default function RecordContainer({ filteredRecords, testRecords, retrieveRecords }) {
+export default function RecordContainer({ filteredRecords, testRecords, retrieveRecords, setShowInfoModal }) {
   // initialize an array for rendering
   const recordArray = [];
   console.log('test');

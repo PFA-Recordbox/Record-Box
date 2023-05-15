@@ -67,6 +67,7 @@ function HomePage({ userCreds, validUser }) {
           filteredRecords={filteredRecords}
           testRecords={testRecords}
           retrieveRecords={retrieveRecords}
+          setShowInfoModal={setShowInfoModal}
         />
         <div id='home-modals'>
           <SettingsModal

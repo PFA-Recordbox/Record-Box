@@ -5,6 +5,10 @@ function InfoModal({ showInfoModal, setShowInfoModal, }) {
     return (null);
   }
 
+  return (
+    
+  )
+
   
 
 }
