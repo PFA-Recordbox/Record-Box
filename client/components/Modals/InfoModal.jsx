@@ -44,11 +44,44 @@ function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRec
     return;
   };
 
-  const makeFieldEditable = () => {
+  const editRecord = async (e) => {
+    e.preventDefault();
+    const reqObj = {
+      website: website,
+      username: username,
+      password: password,
+    }
 
-
+    try {
+      const response = await fetch('/edit', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reqObj)
+      })
+      setEditable(false)
+      return alert('Record edited successfully!')
+    } catch (err) {
+      return `Error editing the record. Error: ${err}.`
+    }
   }
 
+
+  if (editable) {
+    const newDiv = (<form id='edit-form'>
+      <input id='new-website'>Website: </input>
+      <input id='new-username'>Username: </input>
+      <input id='new-password'>Password: </input>
+      <button id='send-edits' type='submit' onClick={(e) => editRecord(e)}>
+        Submit Changes
+      </button>
+      <button id='cancel-changes' onClick={() => setEditable(false)}>
+        Cancel
+      </button>
+    </form>);
+
+  }
 
 
   return (
@@ -58,14 +91,18 @@ function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRec
           <h4 className='modal-title'>Record Information</h4>
         </div>
         <div className='modal-body'>
-          <form>
-            <input id='webname' value={website}></input>
-            <input id='user' value={username}></input>
-            <input id='pass' value={password}></input>
-          </form>
+          <div id='record-info'>
+            <div id='words'>
+              <h6>website: {website}</h6>
+              <h6>username: {username}</h6>
+              <h6>password: {password}</h6>
+            </div>
+          </div>
         </div>
         <div className='modal-footer'>
-          <button id='edit-button'>Edit Record</button>
+          <button id='edit-button' onClick={() => setEditable(true)}>
+            Edit Record
+          </button>
           <button id='delete-button' onClick={(e) => deleteRecord(e)}>
             <span className='material-symbols-outlined'>delete</span>
           </button>
