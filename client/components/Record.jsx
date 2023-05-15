@@ -9,7 +9,9 @@ export default function Record({ website, userName, password, retrieveRecords}){
     setHidden(!hidden);
   }
 
-  const deleteRecord = async () => {
+  const deleteRecord = async (e) => {
+    e.preventDefault();
+    
     const confirmDelete = confirm('ATTENTION: This action cannot be undone. Do you want to delete this record?');
     if (confirmDelete) {
       const reqObj = {
@@ -53,7 +55,7 @@ export default function Record({ website, userName, password, retrieveRecords}){
         <input type={hidden ? "password" : "text"} value={password} id="password"/>
       </div>
       <div className='eachRecordHeader'>
-        <button id='delete-record' onClick={deleteRecord}>Delete</button>
+        <button id='delete-record' onClick={(e) => deleteRecord(e)}>Delete</button>
       </div>
     </div>
   )

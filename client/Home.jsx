@@ -67,18 +67,27 @@ function HomePage({ userCreds, validUser }) {
           testRecords={testRecords}
           retrieveRecords={retrieveRecords}
         />
+        <div id='home-modals'>
+          <SettingsModal
+            userCreds={userCreds}
+            showSettingsModal={showSettingsModal}
+            setShowSettingsModal={setShowSettingsModal}
+          />
+          <AddRecordModal
+            showAddModal={showAddModal}
+            setShowAddModal={setShowAddModal}
+            retrieveRecords={retrieveRecords}
+          />
+        </div>
       </div>
       <div id='navbar'>
         <div id='settings-modal'>
-          <button id='show-settings-button' onClick={()=> setShowSettingsModal(true)}>...</button>
-          <SettingsModal userCreds={userCreds} showSettingsModal={showSettingsModal} setShowSettingsModal={setShowSettingsModal}/>
+          <button id='show-settings-button' onClick={() => setShowSettingsModal(true)}>...</button>
         </div>
         <div id='add-record-modal'>
-          <button id='add-record-button' onClick={()=>setShowAddModal(true)}>+</button>
-          <AddRecordModal showAddModal={showAddModal} setShowAddModal={setShowAddModal} retrieveRecords={retrieveRecords} />
+          <button id='add-record-button' onClick={() => setShowAddModal(true)}>+</button>
         </div>
       </div>
-
     </div>
   );
 
