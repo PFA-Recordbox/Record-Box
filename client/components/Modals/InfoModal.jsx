@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
 function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRecords }) {
+  const [editable, setEditable] = useState(false);
+
+
   if (!showInfoModal) {
     return (null);
   }
@@ -41,6 +44,44 @@ function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRec
     return;
   };
 
+  const editRecord = async (e) => {
+    e.preventDefault();
+    const reqObj = {
+      website: website,
+      username: username,
+      password: password,
+    }
+
+    try {
+      const response = await fetch('/edit', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reqObj)
+      })
+      setEditable(false)
+      return alert('Record edited successfully!')
+    } catch (err) {
+      return `Error editing the record. Error: ${err}.`
+    }
+  }
+
+
+  if (editable) {
+    const newDiv = (<form id='edit-form'>
+      <input id='new-website'>Website: </input>
+      <input id='new-username'>Username: </input>
+      <input id='new-password'>Password: </input>
+      <button id='send-edits' type='submit' onClick={(e) => editRecord(e)}>
+        Submit Changes
+      </button>
+      <button id='cancel-changes' onClick={() => setEditable(false)}>
+        Cancel
+      </button>
+    </form>);
+
+  }
 
 
   return (
@@ -48,16 +89,24 @@ function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRec
       <div className='modal-content'>
         <div id='info-title'>Record Information</div>
         <div className='modal-body'>
-          <h6>Website: {website}</h6>
-          <h6>Username: {username}</h6>
-          <h6>Password: {password}</h6>
+          <div id='record-info'>
+            <div id='words'>
+              <h6>website: {website}</h6>
+              <h6>username: {username}</h6>
+              <h6>password: {password}</h6>
+            </div>
+          </div>
         </div>
         <div className='modal-footer'>
-          <button id='edit-button'>Edit Record</button>
-      <button id='delete-button' onClick={(e) => deleteRecord(e)}>
-        <span id="delete" className='material-symbols-outlined'>delete</span>
-      </button>
-      <button id='back-button' onClick={()=> setShowInfoModal(false)}>Go Back</button>
+          <button id='edit-button' onClick={() => setEditable(true)}>
+            Edit Record
+          </button>
+          <button id='delete-button' onClick={(e) => deleteRecord(e)}>
+            <span className='material-symbols-outlined'>delete</span>
+          </button>
+          <button id='back-button' onClick={() => setShowInfoModal(false)}>
+            Go Back
+          </button>
         </div>
       </div>
     </div>

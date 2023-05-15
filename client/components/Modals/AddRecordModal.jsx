@@ -10,13 +10,13 @@ function AddRecordModal({ showAddModal, setShowAddModal, retrieveRecords }) {
   const addRecord = async (e) => {
     e.preventDefault();
     // gathers input data
-    const web = document.getElementById('add-website');
-    const user = document.getElementById('add-username');
-    const pass = document.getElementById('add-password');
+    const web = document.getElementById('add-website').value;
+    const user = document.getElementById('add-username').value;
+    const pass = document.getElementById('add-password').value;
     const reqObj = {
-      website: web.value,
-      username: user.value,
-      password: pass.value,
+      website: web,
+      username: user,
+      password: pass,
     };
     try {
       const response = await fetch('/add', {
@@ -38,6 +38,8 @@ function AddRecordModal({ showAddModal, setShowAddModal, retrieveRecords }) {
     
   }
 
+
+
   return (
     <div className='modals' >
       <div className='modal-content'>
@@ -52,7 +54,7 @@ function AddRecordModal({ showAddModal, setShowAddModal, retrieveRecords }) {
           </form>
         </div>
         <div className='modal-footer'>
-          <button className='primary-button' onClick={(e)=> addRecord(e)}>Submit</button>
+          <button className='primary-button' type='submit' onClick={(e)=> addRecord(e)}>Submit</button>
           <button className='secondary-button' onClick={()=> setShowAddModal(false)}>Cancel</button>
         </div>
       </div>
