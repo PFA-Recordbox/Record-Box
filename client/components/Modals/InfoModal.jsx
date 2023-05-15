@@ -46,9 +46,7 @@ function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRec
   return (
     <div className='modals'>
       <div className='modal-content'>
-        <div className='modal-header'>
-          <h4 className='modal-title'>Record Information</h4>
-        </div>
+        <div id='info-title'>Record Information</div>
         <div className='modal-body'>
           <h6>Website: {website}</h6>
           <h6>Username: {username}</h6>
@@ -57,7 +55,7 @@ function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRec
         <div className='modal-footer'>
           <button id='edit-button'>Edit Record</button>
       <button id='delete-button' onClick={(e) => deleteRecord(e)}>
-        <span className='material-symbols-outlined'>delete</span>
+        <span id="delete" className='material-symbols-outlined'>delete</span>
       </button>
       <button id='back-button' onClick={()=> setShowInfoModal(false)}>Go Back</button>
         </div>

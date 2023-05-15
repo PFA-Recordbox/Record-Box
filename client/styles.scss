@@ -159,6 +159,11 @@ body {
   font-size: $fontSize;
 }
 
+#record-info {
+  border: none;
+  background-color: #ffb703;
+}
+
 #delete-record {
   height: 3vh;
   width: 3vh;
@@ -214,7 +219,19 @@ body {
 
 .material-symbols-outlined {
   font-size: 60px;
+  color: $mainColor;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 .modals {
   background-color: $mainColor;
@@ -233,6 +250,28 @@ body {
   align-items: center;
   font-size: 50px;
 
+}
+
+#info-title {
+  // border: 10px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4em;
+  color: $mainColor;
+}
+
+h6 {
+  // border: 10px solid blue;
+  width: 40vw;
+  height: 4vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $borders;
+  border-radius: $borderRadius;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
 }
 
 .modal-content {
@@ -325,7 +364,47 @@ h4 {
   color: $mainColor;
 }
 
+.modal-footer #edit-button{
+  height: 3vh;
+  width: 25vw;
+  // border: 10px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: $borderRadius;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+  color: $mainColor;
+  font-size: $fontSize;
+}
 
+.modal-footer #delete-button{
+  border: none;
+  background-color: $secondaryColor;
+}
+
+.modal-footer .material-symbols-outlined{
+  border: none;
+  background-color: $secondaryColor;
+  font-size: 80px;
+  
+}
+
+.modal-footer #back-button{
+  height: 3vh;
+  width: 25vw;
+  // border: 10px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: $borderRadius;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+  color: $mainColor;
+  font-size: $fontSize;
+}
 
 
 
