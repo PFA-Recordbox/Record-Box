@@ -8,6 +8,14 @@ export default function Record({ website, userName, password}){
   const handleToggle = () => {
     setHidden(!hidden);
   }
+
+  const deleteRecord = () => {
+    
+
+  }
+
+
+
   return (
     <div className="eachRecord">
       <div className="eachRecordHeader">
@@ -21,6 +29,9 @@ export default function Record({ website, userName, password}){
       <div className="eachRecordHeader">
         <button onClick={handleToggle} id="toggle">Password:</button>
         <input type={hidden ? "password" : "text"} value={password} id="password"/>
+      </div>
+      <div className='eachRecordHeader'>
+        <button id='delete-record'>Delete</button>
       </div>
     </div>
   )

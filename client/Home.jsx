@@ -30,7 +30,6 @@ function HomePage({ userCreds, validUser }) {
   // retrieve records for current user; this fires on page load
   // **** ARE WE USING A SESSION COOKIE ONCE THE USER IS VALIDATED AND LOGS IN?? *****
   const retrieveRecords = async () => {
-    
     try {
       const response = await fetch('/')
       // define response status
@@ -75,7 +74,7 @@ function HomePage({ userCreds, validUser }) {
         </div>
         <div id='add-record-modal'>
           <button id='add-record-button' onClick={()=>setShowAddModal(true)}>+</button>
-          <AddRecordModal setUserRecords={setUserRecords} showAddModal={showAddModal} setShowAddModal={setShowAddModal} />
+          <AddRecordModal showAddModal={showAddModal} setShowAddModal={setShowAddModal} retrieveRecords={retrieveRecords} />
         </div>
       </div>
 
