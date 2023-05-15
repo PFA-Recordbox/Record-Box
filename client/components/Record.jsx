@@ -35,7 +35,8 @@ export default function Record({ website, username, password, retrieveRecords, s
         </div>
       </div>
       <div>
-        <button id='record-info' onClick={() => setCurrentRecordAndShowInfoModal()}>info button</button>
+        <button id='record-info' onClick={() => setCurrentRecordAndShowInfoModal()}><span class="material-symbols-outlined">settings</span>
+        </button>
       </div>
     </div>
   )

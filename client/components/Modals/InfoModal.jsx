@@ -87,9 +87,7 @@ function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRec
   return (
     <div className='modals'>
       <div className='modal-content'>
-        <div className='modal-header'>
-          <h4 className='modal-title'>Record Information</h4>
-        </div>
+        <div id='info-title'>Record Information</div>
         <div className='modal-body'>
           <div id='record-info'>
             <div id='words'>

@@ -6,6 +6,11 @@ const PORT = 3000;
 //const userController = require("./controller/userController");
 const router = require("./routes.js");
 
+// MongoDB URI
+const MONGODB_URI = "mongodb://localhost:27017"
+
+mongoose.connect(MONGODB_URI)
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
