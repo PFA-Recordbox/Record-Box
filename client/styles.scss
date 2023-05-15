@@ -1,10 +1,11 @@
 $width: 100vw;
-$fontSize: 35px;
+$fontSize: 30px;
 $borderRadius: 20px;
 $mainColor: #023047;
 $secondaryColor: #ffb703;
 $borders: #ffffff;
-$marginTop: 15px;
+$marginTop: 50px;
+$shadowColor: #219ebc;
 
 * {
   box-sizing: border-box;
@@ -63,13 +64,17 @@ body {
   min-width: 600px;
   max-width: 800px;
   // text-indent: 15px;
-  font-size: $fontSize;
+  font-size: $fontSize*1.5;
   border-radius: $borderRadius;
   text-align: center;
   margin-top: $marginTop;
   margin-bottom: $marginTop;
-  // border: 1px solid black;
-  // box-shadow: 1px 1px 0px 1px;
+  border: 8px solid $borders;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+}
+
+#searchbar:focus {
+  outline: none;
 }
 
 #recordcontainer {
@@ -84,50 +89,46 @@ body {
   // margin-top: $marginTop;
 }
 
-// #recordsHeader {
-//   // border: 1px solid rgb(0, 0, 0);
-//   width: $width;
-//   min-height: 30px;
-//   height: 50px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   font-size: 25px;
-// }
-
 .eachRecord {
-  width: $width;
-  margin-left: 100px;
-  margin-right: 100px;
+  width: 100vw;
   height: 400px;
   max-height: 400px;
   min-height: 200px;
-  min-width: 600px;
+  min-width: 800px;
   max-width: 800px;
   border: 8px solid $borders;
   background-color: $secondaryColor;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   border-radius: $borderRadius;
   margin-top: $marginTop;
-  box-shadow: 1px 1px 0px 1px;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+}
+
+.recordInfo {
+  // border: 10px solid red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 81%;
 }
 
 .eachRecordHeader {
-  width: 100px;
+  width: 30%;
   min-height: 100%;
-  min-width: 200px;
+  min-width: 20%;
+  // min-width: 200px;
   max-width: 200px;
-  height: 20px;
+  height: 10px;
   // border: 2px solid salmon;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: $fontSize;
-  // border: 1px solid brown;
+  // border: 5px solid brown;
 }
 
 #website {
@@ -144,7 +145,7 @@ body {
 
 #password {
   // margin-left: 5px;
-  width: 50%;
+  width: 90%;
   border: none;
   font-size: $fontSize;
   text-align: center;
@@ -156,6 +157,15 @@ body {
   border-radius: 5px;
   background-color: $secondaryColor;
   font-size: $fontSize;
+}
+
+#delete-record {
+  height: 3vh;
+  width: 3vh;
+  border: none;
+  background-color: $secondaryColor;
+  color: #023047;
+
 }
 
 #navbar {
@@ -180,10 +190,11 @@ body {
 #show-settings-button {
   height: 6vh;
   width: 6vh;
-  border: 4px solid $borders;
+  border: 8px solid $borders;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
   border-radius: $borderRadius;
   background-color: $secondaryColor;
-  font-size: 60px;
+  // font-size: 100px;
   // transform: rotate(-90deg);
   display: inline-flex;
   justify-content: center;
@@ -194,12 +205,123 @@ body {
 #add-record-button {
   height: 6vh;
   width: 12vh;
-  border: 4px solid $borders;
+  border: 8px solid $borders;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
   border-radius: $borderRadius;
   background-color: $secondaryColor;
-  font-size: 60px;
+  // font-size: 60px;
 }
 
 .material-symbols-outlined {
-  font-size: 40px;
+  font-size: 60px;
 }
+
+.modals {
+  background-color: $mainColor;
+  border: 16px solid #ffffff;
+  // box-shadow: 0px 0px 0px 10px $shadowColor;
+  border-radius: $borderRadius;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+
+}
+
+.modal-content {
+  background-color: $secondaryColor;
+  border-radius: $borderRadius;
+  width: 80vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h4 {
+  color: $mainColor;
+  font-size: 1.4em;
+  // background-color: white;
+  width: 70vw;
+  height: 1vh;
+  text-align: center;
+}
+
+#add-record-form {
+  height: 25vh;
+  width: 70vw;
+  // border: 10px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#add-website {
+  height: 20%;
+  width: 100%;
+  font-size: $fontSize;
+  border-radius: $borderRadius;
+  text-align: center;
+  border: none;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+}
+#add-username {
+  height: 20%;
+  width: 100%;
+  font-size: $fontSize;
+  border-radius: $borderRadius;
+  text-align: center;
+  border: none;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+}
+#add-password {
+  height: 20%;
+  width: 100%;
+  font-size: $fontSize;
+  border-radius: $borderRadius;
+  text-align: center;
+  border: none;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+}
+
+.modal-footer {
+  height: 10vh;
+  width: 70vw;
+  // border: 10px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+
+.primary-button {
+  height: 60%;
+  width: 40%;
+  font-size: $fontSize;
+  border-radius: $borderRadius;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+  color: $mainColor;
+}
+
+.secondary-button {
+  height: 60%;
+  width: 40%;
+  font-size: $fontSize;
+  border-radius: $borderRadius;
+  border: none;
+  background-color: white;
+  box-shadow: 1px 10px 0px 0px $shadowColor;
+  color: $mainColor;
+}
+
