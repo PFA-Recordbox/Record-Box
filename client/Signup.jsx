@@ -17,8 +17,8 @@ function Signup({ setUserCreds, setValidUser, validUser }) {
     const password = document.getElementById('signupPass');
     // stores user input into object for req body
     const userInput = {
-      username: username.value,
-      password: password.value,
+      userID: username.value,
+      userPassword: password.value,
     };
     // send request to server to create a new user
     try {
