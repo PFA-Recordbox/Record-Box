@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
 function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRecords }) {
+  const [editable, setEditable] = useState(false);
+
+
   if (!showInfoModal) {
     return (null);
   }
@@ -41,6 +44,11 @@ function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRec
     return;
   };
 
+  const makeFieldEditable = () => {
+
+
+  }
+
 
 
   return (
@@ -50,16 +58,20 @@ function InfoModal({ showInfoModal, setShowInfoModal, currentRecord, retrieveRec
           <h4 className='modal-title'>Record Information</h4>
         </div>
         <div className='modal-body'>
-          <h6>Website: {website}</h6>
-          <h6>Username: {username}</h6>
-          <h6>Password: {password}</h6>
+          <form>
+            <input id='webname' value={website}></input>
+            <input id='user' value={username}></input>
+            <input id='pass' value={password}></input>
+          </form>
         </div>
         <div className='modal-footer'>
           <button id='edit-button'>Edit Record</button>
-      <button id='delete-button' onClick={(e) => deleteRecord(e)}>
-        <span className='material-symbols-outlined'>delete</span>
-      </button>
-      <button id='back-button' onClick={()=> setShowInfoModal(false)}>Go Back</button>
+          <button id='delete-button' onClick={(e) => deleteRecord(e)}>
+            <span className='material-symbols-outlined'>delete</span>
+          </button>
+          <button id='back-button' onClick={() => setShowInfoModal(false)}>
+            Go Back
+          </button>
         </div>
       </div>
     </div>
