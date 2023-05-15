@@ -20,7 +20,24 @@ try {
     console.error('error with checking session for user:', error);
     res.sendStatus(500)
   }
-})
+});
 
-router.post('/login',)
-router.post('/signup')
+router.post('/login',userController.verifyUser,sessionController.startSession, (req, res) => {
+  res.sendStatus(200);
+});
+
+router.post('/signup',userController.createUser,cookieController.setSSIDCookie, (req,res) => {
+  res.sendStatus(201);
+});
+
+router.put('/add',userController.addUserData,(req,res) => {
+  res.sendStatus(201)
+});
+
+router.delete('/delete',userController.addUserData,(req,res) => {
+  res.sendStatus(204)
+});
+
+router.post('/logout',sessionController.finsihSession, (req,res) => {
+  res.sendStatus(200);
+});
