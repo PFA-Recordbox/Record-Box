@@ -26,7 +26,7 @@ function App() {
           }
         />
         <Route
-          path='/signup'
+          path='/login/signup'
           element={
             <Signup
               setValidUser={setValidUser}
