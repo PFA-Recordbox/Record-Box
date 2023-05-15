@@ -1,147 +1,161 @@
-$width: 70vw;
+$width: 80vw;
+$fontSize: 40px;
 
 * {
   box-sizing: border-box;
+  font-family: 'Comfortaa', cursive;
 }
 
-body {
-  margin: auto;
-  min-width: 540px;
-  max-width: 1000px;
-  width: 100vw;
-  height: 100vh;
-  max-height: 1080px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
 
-#HomePage {
-  // border: 1px solid green;
-  min-width: 540px;
-  max-width: 1000px;
-  width: 1920;
-  height: 1080px;
-  min-height: 1000px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
+  body {
+    border: 1px solid red;
+    margin: auto;
+    min-width: 400px;
+    max-width: 800px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-#searchaddbar {
-  // border: 1px solid rgb(0, 0, 0);
-  width: $width;
-  min-width: 600px;
-  max-width: 800px;
-  height: 5vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 50px;
-  border-radius: 5px;
-}
+  #HomePage {
+    border: 1px solid green;
+    min-width: 540px;
+    max-width: 1000px;
+    width: 800px;
+    min-height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
-#searchbar {
-  width: $width;
-  height: 50px;
-  max-height: 50px;
-  min-width: 600px;
-  max-width: 600px;
-  // text-indent: 15px;
-  font-size: 20px;
-  border-radius: 5px;
-  text-align: center;
-  // border: 1px solid black;
-  // box-shadow: 1px 1px 0px 1px;
-}
+  #searchaddbar {
+    // border: 1px solid rgb(0, 0, 0);
+    width: $width;
+    min-width: 600px;
+    max-width: 800px;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50px;
+    border-radius: 5px;
+  }
 
-#newrecord {
-  width: 150px;
-  height: 50px;
-  min-height: 50px;
-  min-width: 150px;
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  background-color: rgb(255, 255, 255);
-  color: gray;
-  // border: 1px solid black;
-  // box-shadow: 1px 1px 0px 1px;
-}
+  #searchbar {
+    width: $width;
+    height: 50px;
+    max-height: 50px;
+    min-width: 600px;
+    max-width: 800px;
+    // text-indent: 15px;
+    font-size: 20px;
+    border-radius: 5px;
+    text-align: center;
+    // border: 1px solid black;
+    // box-shadow: 1px 1px 0px 1px;
+  }
 
-#recordcontainer {
-  // border: 1px solid blue;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: $width;
-  height: 85vh;
-  min-width: 400px;
-}
+  #newrecord {
+    width: 150px;
+    height: 50px;
+    min-height: 50px;
+    min-width: 150px;
+    font-size: $fontSize;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    color: gray;
+    // border: 1px solid black;
+    // box-shadow: 1px 1px 0px 1px;
+  }
 
-#recordsHeader {
-  // border: 1px solid rgb(0, 0, 0);
-  width: $width;
-  min-height: 30px;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 25px;
-}
+  #recordcontainer {
+    // border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: $width;
+    height: 85vh;
+    min-width: 400px;
+  }
 
-.eachRecord {
-  width: $width;
-  margin-left: 100px;
-  margin-right: 100px;
-  height: 50px;
-  min-width: 600px;
-  max-width: 800px;
-  border: 1px solid rgb(0, 0, 0);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  min-height: 50px;
-  border-radius: 5px;
-  margin-top: 10px;
-  box-shadow: 1px 1px 0px 1px;
-}
+  // #recordsHeader {
+  //   // border: 1px solid rgb(0, 0, 0);
+  //   width: $width;
+  //   min-height: 30px;
+  //   height: 50px;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-items: center;
+  //   font-size: 25px;
+  // }
 
-.eachRecordHeader {
-  width: 100px;
-  min-height: 100%;
-  min-width: 200px;
-  max-width: 200px;
-  height: 20px;
-  // border: 2px solid salmon;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 18px;
-}
+  .eachRecord {
+    width: $width;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 400px;
+    max-height: 400px;
+    min-height: 200px;
+    min-width: 600px;
+    max-width: 800px;
+    border: 1px solid rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: 1px 1px 0px 1px;
+  }
 
-div span {
-  margin-left: 5px;
-}
+  .eachRecordHeader {
+    width: 100px;
+    min-height: 100%;
+    min-width: 200px;
+    max-width: 200px;
+    height: 20px;
+    // border: 2px solid salmon;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: $fontSize;
+    // border: 1px solid brown;
+  }
 
-#password {
-  margin-left: 5px;
-  width: 50%;
-  border: none;
-  font-size: 18px;
-}
+  #website {
+    // border: 1px solid rgb(21, 99, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-#toggle {
-  border: none;
-  border-radius: 5px;
-  background-color: white;
-  font-size: 18px;
-}
+  #website div{
+    // border: 1px solid salmon;
+  }
+
+  #password {
+    // margin-left: 5px;
+    width: 50%;
+    border: none;
+    font-size: $fontSize;
+    text-align: center;
+  }
+
+  #toggle {
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    font-size: $fontSize;
+  }

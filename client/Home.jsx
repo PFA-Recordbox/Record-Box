@@ -46,7 +46,6 @@ function HomePage({ userCreds, validUser }) {
 
   return (
     <div id='HomePage' onLoad={retrieveRecords}>
-      <h1>Welcome to Your Recordbox</h1>
       <div id='search-container'>
         {/* pass down the full list of original records and setUserRecords since we want a re-render to show the added entries;
         Also the ability to setFilteredRecords so the records will re-render on the state change based on the filter */}
