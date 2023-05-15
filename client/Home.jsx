@@ -68,12 +68,13 @@ function HomePage({ userCreds, validUser }) {
         />
       </div>
       <div id='navbar'>
+        <div id="recordbox">Recordbox</div>
         <div id='settings-modal'>
-          <button id='show-settings-button' onClick={()=> setShowSettingsModal(true)}>...</button>
+          <button id='show-settings-button' onClick={()=> setShowSettingsModal(true)}><span class="material-symbols-outlined">more_vert</span></button>
           <SettingsModal userCreds={userCreds} showSettingsModal={showSettingsModal} setShowSettingsModal={setShowSettingsModal}/>
         </div>
         <div id='add-record-modal'>
-          <button id='add-record-button' onClick={()=>setShowAddModal(true)}>+</button>
+          <button id='add-record-button' onClick={()=>setShowAddModal(true)}><span class="material-symbols-outlined">add</span></button>
           <AddRecordModal setUserRecords={setUserRecords} showAddModal={showAddModal} setShowAddModal={setShowAddModal} />
         </div>
       </div>
