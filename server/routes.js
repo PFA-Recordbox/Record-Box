@@ -11,9 +11,9 @@ const User = require('./model/userModel');
 router.get('/', sessionController.isLoggedIn, async (req, res) => {
 	try {
 		// Assuming you have the user ID stored in the session
-		const userId = req.cookies.ssid;
+		const userCookieId = req.cookies.ssid;
 		// Fetch the user's data from the database
-		const user = await User.findOne({ _id: userId });
+		const user = await User.findOne({ _id: userCookieId });
 		// Send the fetched user data as JSON response
 		const userData = user.data;
 		res.status(200).send(userData);

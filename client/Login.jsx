@@ -9,15 +9,17 @@ function Login({ setUserCreds, validUser, setValidUser }) {
     }
   }, [navigate, validUser]);
 
+  console.log('validUser: ', validUser);
+
   // function sends a request to server to validate user's credentials
   const sendLoginCredentials = async () => {
     // pull user's input from browser
-    const username = document.getElementById('loginName');
-    const password = document.getElementById('loginPass');
+    const username = document.getElementById('loginName').value;
+    const password = document.getElementById('loginPass').value;
     // stores user input into object for req body
     const userInput = {
-      userId: username.value,
-      userPassword: password.value,
+      userId: username,
+      userPassword: password,
     };
     // post request to server
     try {

@@ -41,7 +41,7 @@ sessionController.startSession = (res, req, next) => {
 	console.log('----- INSIDE sessionController.startSession -----');
 	Session.create({ cookieId: res.locals.user })
 		.then((data) => {
-			console.log(data);
+			console.log('DATA FROM SESSION: ', data);
 			if (data.status === 201) {
 				return next();
 			} else

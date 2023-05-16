@@ -38,43 +38,43 @@ userController.verifyUser = (req, res, next) => {
 		if (data !== null) {
 			bcrypt.compare(userPassword, userId.userPassword).then((result) => {
 				if (result) {
-					res.locals.user = userId._id;
+					res.locals.user = data._id;
 					return next();
 				}
 			});
 		}
 	});
-	User.findOne({ userId }, (err, user) => {
-		if (err) {
-			return next({
-				log: 'Error ocuured in userController.verifyUser.',
-				status: 500,
-				message: { err: 'An error occured' },
-			});
-		} else if (!user) {
-			res.sendStatus(404);
-		} else {
-			bcrypt
-				.compare(userPassword, userId.userPassword)
-				.then((result) => {
-					if (result) {
-						res.locals.user = user.id;
-						return next();
-						// res.sendStatus(404);
-					}
-					//   else {
-					//     res.sendStatus(404);
-					//   }
-				})
-				.catch((err) => {
-					return next({
-						log: 'Error ocuured in userController.verifyUser.',
-						status: 500,
-						message: { err: 'An error occured' },
-					});
-				});
-		}
-	});
+	// User.findOne({ userId }, (err, user) => {
+	// 	if (err) {
+	// 		return next({
+	// 			log: 'Error ocuured in userController.verifyUser.',
+	// 			status: 500,
+	// 			message: { err: 'An error occured' },
+	// 		});
+	// 	} else if (!user) {
+	// 		res.sendStatus(404);
+	// 	} else {
+	// 		bcrypt
+	// 			.compare(userPassword, userId.userPassword)
+	// 			.then((result) => {
+	// 				if (result) {
+	// 					res.locals.user = user.id;
+	// 					return next();
+	// 					// res.sendStatus(404);
+	// 				}
+	// 				//   else {
+	// 				//     res.sendStatus(404);
+	// 				//   }
+	// 			})
+	// 			.catch((err) => {
+	// 				return next({
+	// 					log: 'Error ocuured in userController.verifyUser.',
+	// 					status: 500,
+	// 					message: { err: 'An error occured' },
+	// 				});
+	// 			});
+	// 	}
+	// });
 };
 
 // userController.updateData = async (req, res, next) => {
