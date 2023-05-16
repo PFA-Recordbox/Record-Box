@@ -1,68 +1,80 @@
-const User = require("../model/userModel");
+const User = require('../model/userModel');
 
 const userController = {};
 userController.createUser = (req, res, next) => {
-  const { userId, userPassword } = req.body;
-  if (!userId || !userPassword)
-    return next({
-      log: "Missing username or password in userController.createUser",
-      status: 400,
-      message: { err: "An error occured" },
-    });
+	console.log('----- INSIDE userController.createUser -----');
+	const { userId, userPassword } = req.body;
+	if (!userId || !userPassword)
+		return next({
+			log: 'Missing username or password in userController.createUser',
+			status: 400,
+			message: { err: 'An error occured' },
+		});
 
-  User.create({ userId, userPassword }, (err, user) => {
-    if (err) {
-      return next({
-        log: "Error ocuured in userController.verifyUser.",
-        status: 500,
-        message: { err: "An error occured" },
-      });
-    } else {
-      res.locals.user = user.id;
-      return next();
-    }
-  });
+	User.create({ userId, userPassword }, (err, user) => {
+		if (err) {
+			return next({
+				log: 'Error ocuured in userController.verifyUser.',
+				status: 500,
+				message: { err: 'An error occured' },
+			});
+		} else {
+			res.locals.user = user.id;
+			return next();
+		}
+	});
 };
 
 userController.verifyUser = (req, res, next) => {
-  const { userId, userPassword } = req.body;
-  if (!userId || !userPassword)
-    return next({
-      log: "Missing username or password in userController.verifyUser",
-      status: 400,
-      message: { err: "An error occured" },
-    });
-  User.findOne({ userId }, (err, user) => {
-    if (err) {
-      return next({
-        log: "Error ocuured in userController.verifyUser.",
-        status: 500,
-        message: { err: "An error occured" },
-      });
-    } else if (!user) {
-      res.sendStatus(404);
-    } else {
-      bcrypt
-        .compare(userPassword, userId.userPassword)
-        .then((result) => {
-          if (result) {
-            res.locals.user = user.id;
-            return next();
-            res.sendStatus(404);
-          }
-          //   else {
-          //     res.sendStatus(404);
-          //   }
-        })
-        .catch((err) => {
-          return next({
-            log: "Error ocuured in userController.verifyUser.",
-            status: 500,
-            message: { err: "An error occured" },
-          });
-        });
-    }
-  });
+	console.log('----- INSIDE userController.verifyUser -----');
+	const { userId, userPassword } = req.body;
+	if (!userId || !userPassword)
+		return next({
+			log: 'Missing username or password in userController.verifyUser',
+			status: 400,
+			message: { err: 'An error occured' },
+		});
+	User.findOne({ userId }).then((data) => {
+		if (data !== null) {
+			bcrypt.compare(userPassword, userId.userPassword).then((result) => {
+				if (result) {
+					res.locals.user = data._id;
+					return next();
+				}
+			});
+		}
+	});
+	// User.findOne({ userId }, (err, user) => {
+	// 	if (err) {
+	// 		return next({
+	// 			log: 'Error ocuured in userController.verifyUser.',
+	// 			status: 500,
+	// 			message: { err: 'An error occured' },
+	// 		});
+	// 	} else if (!user) {
+	// 		res.sendStatus(404);
+	// 	} else {
+	// 		bcrypt
+	// 			.compare(userPassword, userId.userPassword)
+	// 			.then((result) => {
+	// 				if (result) {
+	// 					res.locals.user = user.id;
+	// 					return next();
+	// 					// res.sendStatus(404);
+	// 				}
+	// 				//   else {
+	// 				//     res.sendStatus(404);
+	// 				//   }
+	// 			})
+	// 			.catch((err) => {
+	// 				return next({
+	// 					log: 'Error ocuured in userController.verifyUser.',
+	// 					status: 500,
+	// 					message: { err: 'An error occured' },
+	// 				});
+	// 			});
+	// 	}
+	// });
 };
 
 // userController.updateData = async (req, res, next) => {
